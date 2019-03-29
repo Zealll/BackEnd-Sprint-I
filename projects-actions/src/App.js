@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom'
 
 import ProjectsList from './components/ProjectsList.js'
+import Nav from './components/Nav'
 
 import './App.css';
 
@@ -9,7 +11,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <ProjectsList />
+          <h1>Welcome to Elan's App!</h1>
+          <Nav />
+          <Route exact path='/projects' component={ProjectsList} />
         </header>
       </div>
     );
