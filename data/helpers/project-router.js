@@ -72,7 +72,7 @@ router.post('/', (req, res) => {
     if(!project.name || !project.description) {
         res
         .status(403)
-        .json({message: "You need to fill out both fields (name and description)."})
+        .json({message: "You need to fill out both fields ('name' and 'description')."})
     } else {
         projects
         .insert(project)
@@ -90,7 +90,36 @@ router.post('/', (req, res) => {
     }
 })
 
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    const project = req.body
 
+    if(!project.name || !project.description) {
+        res
+        .status(403)
+        .json({message: "You need to fill out both fields ('name' and 'description')."})
+    } else {
+        projects
+        .update(id, project)
+        .then(updated => {
+            if(!updated) {
+                res
+                .status(404)
+                .json({updated})
+            } else {
+                res
+                .status(202)
+                .json({message: "You succesfully updated your project."})
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            res
+            .status(500)
+            .json({message: "Project information could not be modified."})
+        })
+    }
+})
 
 
 
