@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import { apiUri } from '../GlobalVariables.js'
 
 
@@ -27,7 +28,7 @@ class ProjectsList extends React.Component {
                 <div className='list' key={projects.id}>
                     <h3>{projects.name}</h3>
                     <h4>{projects.description}</h4>
-                    <button>View</button>
+                    <Link to={`/projects/${projects.id}`}><button>View</button></Link>
                 </div>))}
             </div>
         )

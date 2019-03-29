@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -147,4 +147,8 @@ button:active::after {
   opacity: 0.32;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0s;
+}
+
+.nav{
+  text-align: top;
 }
