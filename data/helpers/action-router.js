@@ -67,6 +67,37 @@ router.post('/', (req, res) => {
     }
 })
 
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    const action = req.body
+
+    if(!action.project_id || !action.description || !action.notes) {
+        res
+        .status(403)
+        .json({message: "You need to fill out all three of the fields ('project_id', 'description', and 'notes')."})
+    } else {
+        actions
+        .update(id, action)
+        .then(updated => {
+            if(!updated) {
+                res
+                .status(404)
+                .json({message: `Couldn't find an Action with an ID of ${id}`})
+            } else {
+                res
+                .status(200)
+                .json({message: "You Succesfully updated your Action."})
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            res
+            .status(500)
+            .json({message: "Action information could not be modified."})
+        })
+    }
+})
+
 
 
 module.exports = router
