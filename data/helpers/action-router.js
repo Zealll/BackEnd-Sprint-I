@@ -43,6 +43,30 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+    const action = req.body
+
+    if(!action.project_id || !action.description || !action.notes) {
+        res
+        .status(403)
+        .json({message: "You need to fill out all three of the fields ('project_id', 'description', and 'notes')."})
+    } else {
+        actions
+        .insert(action)
+        .then(newAction => {
+            res
+            .status(201)
+            .json(newAction)
+        })
+        .catch(error => {
+            console.log(error)
+            res
+            .status(500)
+            .json({message: "There was an error while saving your Action to the database"})
+        })
+    }
+})
+
 
 
 module.exports = router
