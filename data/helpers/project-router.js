@@ -66,6 +66,32 @@ router.get('/:id/actions', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+    const project = req.body
+
+    if(!project.name || !project.description) {
+        res
+        .status(403)
+        .json({message: "You need to fill out both fields (name and description)."})
+    } else {
+        projects
+        .insert(project)
+        .then(newProject => {
+            res
+            .status(201)
+            .json(newProject)
+        })
+        .catch(error => {
+            console.log(error)
+            res
+            .status(500)
+            .json({message: "There was an error while saving your Project to the database"})
+        })
+    }
+})
+
+
+
 
 
 module.exports = router
