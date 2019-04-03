@@ -28,13 +28,13 @@ router.get('/:id', (req, res) => {
     projects
     .get(id)
     .then(project => {
-        if(project.length === 0) {
-            res
-            .status(404)
-            .json({message: `Project with the specified ID of ${id} does not exist.`})
-        } else {
-            res.json(project)
-        }
+       if (!project) {
+           res
+           .status(404)
+           .json({message: `Project with the specified ID of ${id} does not exist.`})
+       } else {
+           res.json(project)
+       }
     })
     .catch(error => {
         console.log(error)

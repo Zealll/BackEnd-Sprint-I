@@ -20,7 +20,7 @@ Q:  Describe a Resource?
 
 Q:  What can the API return to help clients know if a request was successful?
 
-    A: Our API can return specific Status codes that we choose, as well it can return Json Objects.
+    A: Our API can return specific Status codes that we choose, as well it can return Json Objects or strings to send back specific messages.
 
 
 

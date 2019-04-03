@@ -1,5 +1,6 @@
 const db = require('../dbConfig.js');
 const mappers = require('./mappers');
+//helper functions
 
 module.exports = {
   get: function(id) {
@@ -12,6 +13,9 @@ module.exports = {
 
       return Promise.all(promises).then(function(results) {
         let [project, actions] = results;
+        if (!project) {
+          return null;
+        }
         project.actions = actions;
 
         return mappers.projectToBody(project);
